@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="flex-center flex-column">
+
+    <div class="container">
+        {% for profile in profiles %}
+        <div>
+            <img src="{{profile.profile_photo.url}}" height="200px" alt="profile-photo">
+            <p class="username">{{profile.user.username}} </p>
+            <p><a class="btn btn-primary" href="{% url 'profile' username=profile.user.username %}">View Profile</a>
+            </p>
+        </div>
+        {% endfor %}
+        <div class="container p-4" id="6">
+            <div class="card-deck">
+                <p><a class="btn btn-outline-info" href="{% url 'upload_image' %}">Add Image</a></p>
+                <p class="btn btn-outline-danger">{{images|length }} Post(s) </p>
+
+                <a href="#" class="btn btn-outline-info">Follow</a>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for img in images %}
+
+                <div class="col-lg-4">
+                    <img src="{{img.photo.url}}" class="img-fluid" alt="">
+                </div>
+                {% empty %}
+                <div class="col-md-12">
+                    <h2>Upload images</h2>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{%endblock%}
